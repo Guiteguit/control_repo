@@ -2,9 +2,9 @@ class minecraft {
   file {‘/opt/minecraft’:
     ensure => directory,
   }
-  file {‘/opt/minecraft/server.jar’:
+  file {‘/opt/minecraft/minecraft_server.1.12.2.jar’:
     ensure => file,
-    source => 'https://launcher.mojang.com/v1/objects/886945bfb2b978778c3a0288fd7fab09d315b25f/server.jar',
+    source      => 'https://s3.amazonaws.com/Minecraft.Download/versions/1.12.2/minecraft_server.1.12.2.jar',
   }
   package {‘java’:
     ensure => present,
@@ -17,9 +17,9 @@ class minecraft {
     ensure => file,
     source => ‘puppet:///modules/minecraft/minecraft.service’,
   }
-  service {'minecraft':
+  service { ‘minecraft’:
     ensure => running,
     enable => true,
   }
-  
 }
+
